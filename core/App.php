@@ -10,7 +10,7 @@ class App
     {
         $url = $this->parseURL();
 
-        // controller
+        // controllers
         if (file_exists('../app/controllers/' . $url[0] . 'Controller.php')) {
             $this->controller = $url[0];
             unset($url[0]);
@@ -32,7 +32,7 @@ class App
             $this->params = array_values($url);
         }
 
-        // jalankan controller & method, serta kirimkan params jika ada
+        // jalankan controllers & method, serta kirimkan params jika ada
         call_user_func_array([$this->controller, $this->method], $this->params);
 
     }

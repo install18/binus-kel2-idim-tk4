@@ -55,23 +55,23 @@ class Database
 
     public function fetchAll()
     {
-        $this->execute();
+        $this->statement->execute();
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function execute()
     {
-        $this->statement->execute();
+        $isSuccess = $this->statement->execute();
+        if (!$isSuccess) {
+            return false;
+        }
+
+        return $this->statement->rowCount() > 0;
     }
 
     public function fetch()
     {
-        $this->execute();
+        $this->statement->execute();
         return $this->statement->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function rowCount()
-    {
-        return $this->statement->rowCount();
     }
 }

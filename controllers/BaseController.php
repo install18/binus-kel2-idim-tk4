@@ -9,7 +9,7 @@ class BaseController
 
     public function model($model)
     {
-        require_once '../app/model/' . $model . 'Model.php';
+        require_once '../app/models/' . $model . 'Model.php';
         return new $model;
     }
 }
