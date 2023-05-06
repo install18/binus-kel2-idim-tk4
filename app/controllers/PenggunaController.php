@@ -77,7 +77,19 @@ class PenggunaController extends BaseController
         header('Location: ' . BASEURL . 'Pengguna/login');
     }
 
-    private function updatePengguna()
+    public function deletePengguna($idPengguna)
+    {
+        $isSuccess = $this->model("Pengguna")->deletePengguna($idPengguna);
+
+        if (!$isSuccess) {
+            Flasher::setFlash('delete pengguna gagal', 'danger');
+            header('Location: ' . BASEURL . 'Pengguna');
+        }
+
+        header('Location: ' . BASEURL . 'Home');
+    }
+
+    public function updatePengguna()
     {
         $username = $_SESSION['username'];
         $password = $_POST['password'];

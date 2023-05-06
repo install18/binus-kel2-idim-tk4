@@ -51,4 +51,13 @@ class PenggunaModel extends BaseModel
         $this->getDb()->bindParam('alamat', $alamat);
         return $this->getDb()->execute();
     }
+
+    public function deletePengguna($idPengguna)
+    {
+        $query = `DELETE FROM ${this->getTable()} WHERE idPengguna=:idPengguna`;
+
+        $this->getDb()->query($query);
+        $this->getDb()->bindParam('idPengguna', $idPengguna);
+        return $this->getDb()->execute();
+    }
 }
