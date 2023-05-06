@@ -1,0 +1,25 @@
+<?php
+
+class View {
+    public function renderItems($items) {
+        if (empty($items)) {
+            echo "No items found.";
+        } else {
+            foreach ($items as $item) {
+                echo "ID: " . $item['id'] . "<br>";
+                echo "Name: " . $item['name'] . "<br>";
+                echo "Description: " . $item['description'] . "<br><br>";
+            }
+        }
+    }
+
+    public function renderItem($item) {
+        if (empty($item)) {
+            echo "Item not found.";
+        } else {
+            echo "ID: " . $item['id'] . "<br>";
+            echo "Name: " . $item['name'] . "<br>";
+            echo "Description: " . $item['description'] . "<br><br>";
+        }
+    }
+}
