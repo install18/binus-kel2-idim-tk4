@@ -1,5 +1,6 @@
 <?php
 
+
 class BarangModel extends BaseModel
 {
     public function __construct()

@@ -1,5 +1,6 @@
 <?php
 
+
 class PembelianController extends BaseController
 {
     public function index()

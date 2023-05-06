@@ -1,5 +1,6 @@
 <?php
 
+
 class HakAksesModel extends BaseModel
 {
     public function __construct()

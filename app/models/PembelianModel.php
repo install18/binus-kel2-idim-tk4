@@ -1,5 +1,6 @@
 <?php
 
+
 class PembelianModel extends BaseModel
 {
     public function __construct()

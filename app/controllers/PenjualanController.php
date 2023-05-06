@@ -1,5 +1,6 @@
 <?php
 
+
 class PenjualanController extends BaseController
 {
     public function index()

@@ -1,5 +1,6 @@
 <?php
 
+
 class PenggunaModel extends BaseModel
 {
     public function __construct()

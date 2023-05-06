@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Toko berbicara</title>
-<!--    <link rel="stylesheet" href="--><?php //= BASEURL; ?><!--/css/bootstrap.css">-->
-<!--    <link rel="stylesheet" href="--><?php //= BASEURL; ?><!--/css/style.css">-->
+    <!--    <link rel="stylesheet" href="--><?php //= BASEURL; ?><!--/css/bootstrap.css">-->
+    <!--    <link rel="stylesheet" href="--><?php //= BASEURL; ?><!--/css/style.css">-->
 </head>
 <body>
 
@@ -17,7 +17,8 @@
 <!--        </button>-->
 <!--        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
 <!--            <div class="navbar-nav">-->
-<!--                <a class="nav-item nav-link active" href="--><?php //= BASEURL; ?><!--">Home <span class="sr-only">(current)</span></a>-->
+<!--                <a class="nav-item nav-link active" href="-->
+<?php //= BASEURL; ?><!--">Home <span class="sr-only">(current)</span></a>-->
 <!--                <a class="nav-item nav-link" href="--><?php //= BASEURL; ?><!--/mahasiswa">Mahasiswa</a>-->
 <!--                <a class="nav-item nav-link" href="--><?php //= BASEURL; ?><!--/about">About</a>-->
 <!--            </div>-->
