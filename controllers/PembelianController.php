@@ -2,7 +2,8 @@
 
 class PembelianController extends BaseController
 {
-    public function index() {
+    public function index()
+    {
         $listPembelian = $this->model('Barang')->getPembelian();
         $listBarang = array();
 

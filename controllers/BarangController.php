@@ -42,6 +42,18 @@ class BarangController extends BaseController
         header('Location: ' . BASEURL . 'Barang');
     }
 
+    public function deleteBarang($idBarang)
+    {
+        $isSuccess = $this->model('Barang')->updateBarang($idBarang);
+        if (!$isSuccess) {
+            Flasher::setFlash('delete barang gagal', 'danger');
+            header('Location: ' . BASEURL . 'Barang');
+        }
+
+        Flasher::setFlash('delete barang berhasil', 'success');
+        header('Location: ' . BASEURL . 'Barang');
+    }
+
     public function updateBarang()
     {
         $idBarang = $_POST['idBarang'];

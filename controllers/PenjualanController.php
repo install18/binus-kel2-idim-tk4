@@ -5,8 +5,17 @@ class PenjualanController extends BaseController
     public function index()
     {
         $idPengguna = $_SESSION['username'];
-        $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
-        $listBarang[] = array();
+        $hakAkses = $_SESSION['akses'];
+
+        $listPenjualan = array();
+
+        if ($hakAkses == 'USER') {
+            $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
+        } elseif ($hakAkses == 'ADMIN') {
+            $listPenjualan = $this->model('Penjualan')->getPenjualan();
+        }
+
+        $listBarang = array();
 
         if ($listPenjualan != null || count($listPenjualan) != 0) {
             foreach ($listPenjualan as $penjualan) {
@@ -16,6 +25,11 @@ class PenjualanController extends BaseController
         }
 
         $data['listBarang'] = $listBarang;
+    }
+
+    public function lihatPenjualan()
+    {
+
     }
 
     public function tambahPenjualan()

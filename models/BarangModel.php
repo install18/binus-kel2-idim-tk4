@@ -64,6 +64,15 @@ class BarangModel extends BaseModel
         $this->getDb()->bindParam('idBarang', $idBarang);
 
         return $this->getDb()->execute();
+    }
 
+    public function deleteBarang($idBarang)
+    {
+        $query = `DELETE FROM ${this->getTable()} WHERE idBarang=:idBarang`;
+
+        $this->getDb()->query($query);
+        $this->getDb()->bindParam('idBarang', $idBarang);
+
+        return $this->getDb()->execute();
     }
 }
