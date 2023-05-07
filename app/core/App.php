@@ -10,11 +10,12 @@ class App
     {
         $url = $this->parseURL();
 
+        $url[0] = $url[0] . 'Controller';
         $this->controller = $this->controller . 'Controller';
 
         // controllers
         if (file_exists('../app/controllers/' . $url[0] . '.php')) {
-            $this->controller = $url[0] . 'Controller';
+            $this->controller = $url[0];
             unset($url[0]);
         }
 

@@ -1,7 +1,7 @@
 <?php
 
-const BASEURL = 'http://localhost/binus-idim/';
-const ASSETS = BASEURL . 'public/';
+const BASEURL = 'http://localhost/binus-idim/public/';
+const ASSETS = BASEURL;
 const DB_HOST = 'localhost';
 const DB_USERNAME = 'root';
 const DB_PASS = '';

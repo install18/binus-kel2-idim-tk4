@@ -15,10 +15,8 @@
                                 <tr>
                                     <th>Nama Barang</th>
                                     <th>Keterangan</th>
-                                    <th>Supplier</th>
                                     <th>Satuan</th>
                                     <th>Stok</th>
-                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,7 +30,7 @@
                                         <td><?= $barang['keterangan'] ?></td>
 
                                         <td><?= $barang['satuan'] ?></td>
-                                        <td class="stok"><?= $barang['stok'] ?></td>
+                                        <td><?= $barang['stok'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
