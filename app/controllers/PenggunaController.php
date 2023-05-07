@@ -7,11 +7,11 @@ class PenggunaController extends BaseController
         $idAkses = $_SESSION['idAkses'];
         $listPengguna = array();
 
-        if ($idAkses == USER) {
+        if ($idAkses == ADMIN) {
+            $listPengguna = $this->model('Pengguna')->getPengguna();
+        } else {
             $username = $_SESSION['username'];
             $listPengguna = $this->model('Pengguna')->getPenggunaByNamaPengguna($username);
-        } elseif ($idAkses == ADMIN) {
-            $listPengguna = $this->model('Pengguna')->getPengguna();
         }
 
         // $listPengguna = $this->model('Pengguna')->getPengguna();
