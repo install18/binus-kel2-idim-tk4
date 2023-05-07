@@ -47,7 +47,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="Data_member.html">Data Member</a>
                     </li>
                     <li>
-                        <a href="Login.html">Log Out</a>
+                        <a href="<?= BASEURL; ?>Pengguna/logout">Log Out</a>
                     </li>
                 </ul>
             </div>

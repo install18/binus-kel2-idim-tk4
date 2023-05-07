@@ -21,11 +21,22 @@ class PenjualanController extends BaseController
         if ($listPenjualan != null || count($listPenjualan) != 0) {
             foreach ($listPenjualan as $penjualan) {
                 $barang = $this->model('Barang')->getBarangByIdBarang($penjualan['idBarang']);
-                $listBarang[] = $barang;
+                $listBarang[] = [
+                    "idBarang" => $barang["idBarang"],
+                    "namaBarang" => $barang["namaBarang"],
+                    "satuan" => $barang["satuan"],
+                    "hargaJual" => $penjualan["hargaJual"],
+                    "jumlahPenjualan" => $penjualan["jumlahPenjualan"],
+                ];
             }
         }
 
         $data['listBarang'] = $listBarang;
+
+        $data['title'] = 'List Penjualan Barang';
+        $this->view('template/header', $data);
+        $this->view('Penjualan/LihatPenjualan', $data);
+        $this->view('template/footer');
     }
 
     public function tambahPenjualan()
