@@ -27,7 +27,6 @@ class BarangController extends BaseController
         $satuan = $_POST['satuan'];
         $harga = $_POST['harga'];
         $stok = 0;
-        $idPengguna = $_SESSION['username'];
 
         if ($namaBarang == null || strlen($namaBarang) == 0) {
             Flasher::setFlash('nama barang tidak boleh kosong', 'red');
@@ -43,7 +42,7 @@ class BarangController extends BaseController
             return;
         }
 
-        $isSuccess = $this->model('Barang')->insertBarang($namaBarang, $keterangan, $harga, $satuan, $stok, $idPengguna);
+        $isSuccess = $this->model('Barang')->insertBarang($namaBarang, $keterangan, $harga, $satuan, $stok);
 
         if (!$isSuccess) {
             Flasher::setFlash('insert barang gagal', 'red');
