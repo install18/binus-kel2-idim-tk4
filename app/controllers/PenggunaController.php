@@ -4,9 +4,23 @@ class PenggunaController extends BaseController
 {
     public function index()
     {
-        $username = $_SESSION['username'];
-        $data['pengguna'] = $this->model('Pengguna')->getPenggunaByNamaPengguna($username);
-        $this->view('Pengguna/detail', $data);
+        $idAkses = $_SESSION['idAkses'];
+        $listPengguna = array();
+
+        if ($idAkses == USER) {
+            $username = $_SESSION['username'];
+            $listPengguna = $this->model('Pengguna')->getPenggunaByNamaPengguna($username);
+        } elseif ($idAkses == ADMIN) {
+            $listPengguna = $this->model('Pengguna')->getPengguna();
+        }
+
+        // $listPengguna = $this->model('Pengguna')->getPengguna();
+
+        $data['listPengguna'] = $listPengguna;
+        $data['title'] = 'Lihat Pengguna';
+        $this->view('template/header', $data);
+        $this->view('Pengguna/LihatPengguna', $data);
+        $this->view('template/footer');
     }
 
     public function login()
@@ -40,7 +54,7 @@ class PenggunaController extends BaseController
             return;
         }
 
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $result['namaPengguna'];
         $_SESSION['idAkses'] = $result['idAkses'];
         header('Location: ' . BASEURL);
     }

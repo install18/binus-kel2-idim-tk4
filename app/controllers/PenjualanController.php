@@ -6,13 +6,13 @@ class PenjualanController extends BaseController
     public function index()
     {
         $idPengguna = $_SESSION['username'];
-        $hakAkses = $_SESSION['idAkses'];
+        $idAkses = $_SESSION['idAkses'];
 
         $listPenjualan = array();
 
-        if ($hakAkses == USER) {
+        if ($idAkses == USER) {
             $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
-        } elseif ($hakAkses == ADMIN) {
+        } elseif ($idAkses == ADMIN) {
             $listPenjualan = $this->model('Penjualan')->getPenjualan();
         }
 

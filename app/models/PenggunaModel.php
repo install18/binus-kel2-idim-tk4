@@ -8,6 +8,12 @@ class PenggunaModel extends BaseModel
         parent::__construct("Pengguna");
     }
 
+    public function getPengguna()
+    {
+        $this->db->query("SELECT * FROM $this->table");
+        return $this->db->fetchAll();
+    }
+
     public function getPenggunaByNamaPenggunaAndPassword($namaPengguna, $password)
     {
         $this->db->query("SELECT * FROM $this->table WHERE namaPengguna=:namaPengguna AND password=:password");
@@ -20,7 +26,7 @@ class PenggunaModel extends BaseModel
     {
         $this->db->query("SELECT * FROM $this->table WHERE namaPengguna=:namaPengguna");
         $this->db->bindParam('namaPengguna', $namaPengguna);
-        return $this->db->fetch();
+        return $this->db->fetchAll();
     }
 
     public function insertPengguna($namaPengguna, $password, $namaDepan, $namaBelakang, $noHp, $alamat, $access)

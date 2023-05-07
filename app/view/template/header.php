@@ -44,7 +44,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="<?= BASEURL; ?>Penjualan">Penjualan</a>
                     </li>
                     <li>
-                        <a href="Data_member.html">Data Member</a>
+                        <a href="<?= BASEURL; ?>Pengguna">Data Member</a>
                     </li>
                     <li>
                         <a href="<?= BASEURL; ?>Pengguna/logout">Log Out</a>
