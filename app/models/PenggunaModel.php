@@ -25,7 +25,7 @@ class PenggunaModel extends BaseModel
 
     public function insertPengguna($namaPengguna, $password, $namaDepan, $namaBelakang, $noHp, $alamat, $access)
     {
-        $query = "INSERT INTO $this->table VALUES ('', :namaPengguna, :password, :namaDepan, :namaBelakang, :noHp, :alamat, :access";
+        $query = "INSERT INTO $this->table VALUES('', :namaPengguna, :password, :namaDepan, :namaBelakang, :noHp, :alamat, :access)";
 
         $this->db->query($query);
         $this->db->bindParam('namaPengguna', $namaPengguna);

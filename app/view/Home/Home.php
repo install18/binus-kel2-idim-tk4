@@ -40,9 +40,5 @@
             </div>
         </div>
     </section>
-
-    <div class="button-container">
-        <a href="<?= ASSETS; ?>Update_barang.html">Update Barang</a>
-    </div>
 </div>
 </div>

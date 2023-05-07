@@ -21,20 +21,39 @@ class PenggunaController extends BaseController
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+        if ($username == null || strlen($username) == 0) {
+            Flasher::setFlash('username tidak boleh kosong', 'red');
+            header('Location: ' . BASEURL . 'Pengguna/login');
+            return;
+        } elseif ($password == null || strlen($password) == 0) {
+            Flasher::setFlash('password tidak boleh kosong', 'red');
+            header('Location: ' . BASEURL . 'Pengguna/login');
+            return;
+        }
+
         $result = $this->model('Pengguna')->getPenggunaByNamaPenggunaAndPassword($username, $password);
 
         if ($result == null) {
-            Flasher::setFlash('username tidak ditemukan atau password tidak sesuai', 'danger');
+            Flasher::setFlash('username tidak ditemukan atau password tidak sesuai', 'red');
             header('Location: ' . BASEURL . 'Pengguna/login');
+            return;
         }
 
-        session_start();
         $_SESSION['username'] = $username;
         $_SESSION['access'] = $result['idAkses'];
-        header('Location: ' . BASEURL . 'Home');
+        header('Location: ' . BASEURL);
     }
 
     public function register()
+    {
+        $data['title'] = 'Register';
+        $this->view('template/loginRegister_header', $data);
+        $this->view('Pengguna/Register');
+        $this->view('template/loginRegister_footer');
+    }
+
+    public function processRegister()
     {
         $username = $_POST['namaPengguna'];
         $password = $_POST['password'];
@@ -45,33 +64,39 @@ class PenggunaController extends BaseController
         $access = 'USER';
 
         if ($username == null || strlen($username) == 0) {
-            Flasher::setFlash('username tidak boleh kosong', 'danger');
+            Flasher::setFlash('username tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         } elseif ($password == null || strlen($password) == 0) {
-            Flasher::setFlash('password tidak boleh kosong', 'danger');
+            Flasher::setFlash('password tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         } elseif ($namaDepan == null || strlen($namaDepan) == 0) {
-            Flasher::setFlash('nama depan tidak boleh kosong', 'danger');
+            Flasher::setFlash('nama depan tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         } elseif ($namaBelakang == null || strlen($namaBelakang) == 0) {
-            Flasher::setFlash('nama belakang tidak boleh kosong', 'danger');
+            Flasher::setFlash('nama belakang tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         } elseif ($noHp == null || strlen($noHp) == 0) {
-            Flasher::setFlash('no hp tidak boleh kosong', 'danger');
+            Flasher::setFlash('no hp tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         } elseif ($alamat == null || strlen($alamat) == 0) {
-            Flasher::setFlash('alamat tidak boleh kosong', 'danger');
+            Flasher::setFlash('alamat tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         }
 
         $isSuccess = $this->model("Pengguna")->insertPengguna($username, $password, $namaDepan, $namaBelakang, $noHp, $alamat, $access);
 
         if (!$isSuccess) {
-            Flasher::setFlash('registrasi gagal', 'danger');
+            Flasher::setFlash('registrasi gagal', 'red');
             header('Location: ' . BASEURL . 'Pengguna/register');
+            return;
         }
 
-        session_start();
         $_SESSION['username'] = $username;
         $_SESSION['access'] = $access;
         header('Location: ' . BASEURL . 'Home');
@@ -81,7 +106,6 @@ class PenggunaController extends BaseController
     {
         unset($_SESSION['username']);
         unset($_SESSION['idAkses']);
-        session_destroy();
         header('Location: ' . BASEURL . 'Pengguna/login');
     }
 
@@ -90,8 +114,9 @@ class PenggunaController extends BaseController
         $isSuccess = $this->model("Pengguna")->deletePengguna($idPengguna);
 
         if (!$isSuccess) {
-            Flasher::setFlash('delete pengguna gagal', 'danger');
+            Flasher::setFlash('delete pengguna gagal', 'red');
             header('Location: ' . BASEURL . 'Pengguna');
+            return;
         }
 
         header('Location: ' . BASEURL . 'Home');
@@ -107,27 +132,33 @@ class PenggunaController extends BaseController
         $alamat = $_POST['alamat'];
 
         if ($password == null || strlen($password) == 0) {
-            Flasher::setFlash('password tidak boleh kosong', 'danger');
+            Flasher::setFlash('password tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         } elseif ($namaDepan == null || strlen($namaDepan) == 0) {
-            Flasher::setFlash('nama depan tidak boleh kosong', 'danger');
+            Flasher::setFlash('nama depan tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         } elseif ($namaBelakang == null || strlen($namaBelakang) == 0) {
-            Flasher::setFlash('nama belakang tidak boleh kosong', 'danger');
+            Flasher::setFlash('nama belakang tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         } elseif ($noHp == null || strlen($noHp) == 0) {
-            Flasher::setFlash('no hp tidak boleh kosong', 'danger');
+            Flasher::setFlash('no hp tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         } elseif ($alamat == null || strlen($alamat) == 0) {
-            Flasher::setFlash('alamat tidak boleh kosong', 'danger');
+            Flasher::setFlash('alamat tidak boleh kosong', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         }
 
         $isSuccess = $this->model("Pengguna")->updatePengguna($username, $password, $namaDepan, $namaBelakang, $noHp, $alamat);
 
         if (!$isSuccess) {
-            Flasher::setFlash('registrasi gagal', 'danger');
+            Flasher::setFlash('registrasi gagal', 'red');
             header('Location: ' . BASEURL . 'Pengguna/update');
+            return;
         }
 
         header('Location: ' . BASEURL . 'Home');

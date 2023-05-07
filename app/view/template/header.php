@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['username'])) {
+    header('Location: ' . BASEURL . 'Pengguna/login');
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -28,11 +35,11 @@
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
                     <li>
-                        <a href="Dashboard_barang.html">Barang</a>
+                        <a href="<?= BASEURL; ?>Barang">Barang</a>
                     </li>
                     <li>
 
-                        <a href="Pembelian.html">Pembelian</a>
+                        <a href="<?= BASEURL; ?>Pembelian">Pembelian</a>
                     </li>
                     <li>
                         <a href="Penjualan.html">Penjualan</a>
