@@ -10,10 +10,10 @@ class PenjualanController extends BaseController
 
         $listPenjualan = array();
 
-        if ($idAkses == USER) {
-            $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
-        } elseif ($idAkses == ADMIN) {
+        if ($idAkses == ADMIN) {
             $listPenjualan = $this->model('Penjualan')->getPenjualan();
+        } else {
+            $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
         }
 
         $listBarang = array();
