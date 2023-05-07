@@ -53,7 +53,7 @@ class PembelianController extends BaseController
             header('Location: ' . BASEURL . 'Pembelian');
         }
 
-        Flasher::setFlash(`pembelian ${barang['NamaBarang']} gagal`, 'danger');
+        Flasher::setFlash("pembelian ${barang['NamaBarang']} gagal", 'danger');
         header('Location: ' . BASEURL . 'Pembelian');
     }
 }

@@ -4,6 +4,10 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        $barangList = $this->model('Barang')->getBarang();
+        $data['title'] = 'Home';
+        $data['listBarang'] =  $this->model('Barang')->getBarang();
+        $this->view('template/header', $data);
+        $this->view('Home/Home', $data);
+        $this->view('template/footer');
     }
 }

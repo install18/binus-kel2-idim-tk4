@@ -9,36 +9,34 @@ class PenjualanModel extends BaseModel
 
     public function getPenjualanByIdPengguna($idPengguna)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE idPengguna=:idPengguna`);
-        $this->getDb()->bindParam('idPengguna', $idPengguna);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table WHERE idPengguna=:idPengguna");
+        $this->db->bindParam('idPengguna', $idPengguna);
+        return $this->db->fetchAll();
     }
 
     public function getPenjualanByIdBarang($idBarang)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE idBarang=:idBarang`);
-        $this->getDb()->bindParam('idBarang', $idBarang);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table WHERE idBarang=:idBarang");
+        $this->db->bindParam('idBarang', $idBarang);
+        return $this->db->fetchAll();
     }
 
     public function getPenjualan()
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()}`);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table");
+        return $this->db->fetchAll();
     }
 
     public function insertPenjualan($idBarang, $jumlahPenjualan, $hargaPenjualan, $idPengguna)
     {
-        $query = `INSERT INTO ${this->getTable()} VALUES ('', :jumlahPenjualan, :hargaPenjualan, :idPengguna, :idBarang)`;
+        $query = "INSERT INTO $this->table VALUES ('', :jumlahPenjualan, :hargaPenjualan, :idPengguna, :idBarang)";
 
-        $this->getDb()->query($query);
-        $this->getDb()->bindParam('jumlahPenjualan', $jumlahPenjualan);
-        $this->getDb()->bindParam('hargaPenjualan', $hargaPenjualan);
-        $this->getDb()->bindParam('idPengguna', $idPengguna);
-        $this->getDb()->bindParam('idBarang', $idBarang);
+        $this->db->query($query);
+        $this->db->bindParam('jumlahPenjualan', $jumlahPenjualan);
+        $this->db->bindParam('hargaPenjualan', $hargaPenjualan);
+        $this->db->bindParam('idPengguna', $idPengguna);
+        $this->db->bindParam('idBarang', $idBarang);
 
-        return $this->getDb()->execute();
-
+        return $this->db->execute();
     }
 }
-

@@ -30,7 +30,6 @@ class PenjualanController extends BaseController
 
     public function lihatPenjualan()
     {
-
     }
 
     public function tambahPenjualan()
@@ -70,7 +69,7 @@ class PenjualanController extends BaseController
             header('Location: ' . BASEURL . 'Penjualan');
         }
 
-        Flasher::setFlash(`Penjualan ${barang['NamaBarang']} gagal`, 'danger');
+        Flasher::setFlash("Penjualan ${barang['NamaBarang']} gagal", 'danger');
         header('Location: ' . BASEURL . 'Penjualan');
     }
 }

@@ -10,29 +10,27 @@ class PembelianModel extends BaseModel
 
     public function getPembelian()
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()}`);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table");
+        return $this->db->fetchAll();
     }
 
     public function getPembelianByIdPengguna($idPengguna)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE idPengguna=:idPengguna`);
-        $this->getDb()->bindParam('idPengguna', $idPengguna);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table WHERE idPengguna=:idPengguna");
+        $this->db->bindParam('idPengguna', $idPengguna);
+        return $this->db->fetchAll();
     }
 
     public function insertPembelian($idBarang, $jumlahPembelian, $hargaPembelian, $idPengguna)
     {
-        $query = `INSERT INTO ${this->getTable()} VALUES ('', :jumlahPembelian, :hargaPembelian, :idPengguna, :idBarang)`;
+        $query = "INSERT INTO $this->table VALUES ('', :jumlahPembelian, :hargaPembelian, :idPengguna, :idBarang)";
 
-        $this->getDb()->query($query);
-        $this->getDb()->bindParam('jumlahPembelian', $jumlahPembelian);
-        $this->getDb()->bindParam('hargaPembelian', $hargaPembelian);
-        $this->getDb()->bindParam('idPengguna', $idPengguna);
-        $this->getDb()->bindParam('idBarang', $idBarang);
+        $this->db->query($query);
+        $this->db->bindParam('jumlahPembelian', $jumlahPembelian);
+        $this->db->bindParam('hargaPembelian', $hargaPembelian);
+        $this->db->bindParam('idPengguna', $idPengguna);
+        $this->db->bindParam('idBarang', $idBarang);
 
-        return $this->getDb()->execute();
-
+        return $this->db->execute();
     }
 }
-
