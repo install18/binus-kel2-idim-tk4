@@ -6,13 +6,13 @@ class PenjualanController extends BaseController
     public function index()
     {
         $idPengguna = $_SESSION['username'];
-        $hakAkses = $_SESSION['akses'];
+        $hakAkses = $_SESSION['idAkses'];
 
         $listPenjualan = array();
 
-        if ($hakAkses == 'USER') {
+        if ($hakAkses == USER) {
             $listPenjualan = $this->model('Penjualan')->getPenjualanByIdPengguna($idPengguna);
-        } elseif ($hakAkses == 'ADMIN') {
+        } elseif ($hakAkses == ADMIN) {
             $listPenjualan = $this->model('Penjualan')->getPenjualan();
         }
 
@@ -28,50 +28,56 @@ class PenjualanController extends BaseController
         $data['listBarang'] = $listBarang;
     }
 
-    public function lihatPenjualan()
+    public function tambahPenjualan()
     {
+        $data['title'] = 'Penjualan Stok Barang';
+        $data['listBarang'] = $this->model('Barang')->getBarang();
+
+        $this->view('template/header', $data);
+        $this->view('Penjualan/TambahPenjualan', $data);
+        $this->view('template/footer');
     }
 
-    public function tambahPenjualan()
+    public function processTambahPenjualan()
     {
         $idBarang = $_POST['idBarang'];
         $hargaPenjualan = $_POST['hargaPenjualan'];
-        $jumlahPenjualan = $_POST['$jumlahPenjualan'];
+        $jumlahPenjualan = $_POST['jumlahPenjualan'];
         $idPengguna = $_SESSION['username'];
 
         if ($idBarang == null || strlen($idBarang) == 0) {
             Flasher::setFlash('id barang tidak boleh kosong', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
-        } elseif ($hargaPenjualan == null || strlen($hargaPenjualan) == 0) {
+        } elseif ($hargaPenjualan == null || $hargaPenjualan == 0) {
             Flasher::setFlash('harga Penjualan tidak boleh kosong', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
-        } elseif ($jumlahPenjualan == null || strlen($jumlahPenjualan) == 0) {
+        } elseif ($jumlahPenjualan == null || $jumlahPenjualan == 0) {
             Flasher::setFlash('jumlah Penjualan tidak boleh kosong', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
         }
 
         $barang = $this->model('Barang')->getBarangByIdBarang($idBarang);
         if ($barang == null) {
             Flasher::setFlash('barang tidak ditemukan', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
         }
 
-        $updatedStok = $barang['stok'] - $jumlahPenjualan;
+        $updatedStok = $barang['stok'] + $jumlahPenjualan;
         $isSuccess = $this->model('Barang')->updateStokBarang($idBarang, $updatedStok);
         if (!$isSuccess) {
             Flasher::setFlash('Update stok gagal', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
         }
 
         $isSuccess = $this->model('Penjualan')->insertPenjualan($idBarang, $jumlahPenjualan, $hargaPenjualan, $idPengguna);
         if (!$isSuccess) {
             Flasher::setFlash('Penjualan gagal', 'red');
-            header('Location: ' . BASEURL . 'Penjualan');
+            header('Location: ' . BASEURL . 'Penjualan/tambahPenjualan');
             return;
         }
 

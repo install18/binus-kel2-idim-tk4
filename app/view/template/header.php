@@ -30,7 +30,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="p-4 pt-5">
                 <h2>
-                    <class="logo">Shop Center
+                    <class="logo">Toko Berbicara
                 </h2>
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
@@ -38,11 +38,10 @@ if (!isset($_SESSION['username'])) {
                         <a href="<?= BASEURL; ?>Barang">Barang</a>
                     </li>
                     <li>
-
                         <a href="<?= BASEURL; ?>Pembelian">Pembelian</a>
                     </li>
                     <li>
-                        <a href="Penjualan.html">Penjualan</a>
+                        <a href="<?= BASEURL; ?>Penjualan">Penjualan</a>
                     </li>
                     <li>
                         <a href="Data_member.html">Data Member</a>

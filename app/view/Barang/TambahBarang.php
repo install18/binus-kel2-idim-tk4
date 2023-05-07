@@ -15,7 +15,7 @@
                 </div>
                 <div class="formbold-mb-5">
                     <label for="satuan" class="formbold-form-label"> Satuan </label>
-                    <input type="number" name="satuan" id="satuan" placeholder="Masukkan satuan barang" class="formbold-form-input" />
+                    <input type="text" name="satuan" id="satuan" placeholder="Masukkan satuan barang" class="formbold-form-input" />
                 </div>
                 <div class="formbold-mb-5">
                     <label for="harga" class="formbold-form-harga"> Harga </label>

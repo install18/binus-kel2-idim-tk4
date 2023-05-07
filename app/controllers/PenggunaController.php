@@ -41,7 +41,7 @@ class PenggunaController extends BaseController
         }
 
         $_SESSION['username'] = $username;
-        $_SESSION['access'] = $result['idAkses'];
+        $_SESSION['idAkses'] = $result['idAkses'];
         header('Location: ' . BASEURL);
     }
 
@@ -61,7 +61,7 @@ class PenggunaController extends BaseController
         $namaBelakang = $_POST['namaBelakang'];
         $noHp = $_POST['noHp'];
         $alamat = $_POST['alamat'];
-        $access = 'USER';
+        $access = USER;
 
         if ($username == null || strlen($username) == 0) {
             Flasher::setFlash('username tidak boleh kosong', 'red');
@@ -98,7 +98,7 @@ class PenggunaController extends BaseController
         }
 
         $_SESSION['username'] = $username;
-        $_SESSION['access'] = $access;
+        $_SESSION['idAkses'] = $access;
         header('Location: ' . BASEURL . 'Home');
     }
 

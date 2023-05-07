@@ -34,7 +34,7 @@ class PenggunaModel extends BaseModel
         $this->db->bindParam('namaBelakang', $namaBelakang);
         $this->db->bindParam('noHp', $noHp);
         $this->db->bindParam('alamat', $alamat);
-        $this->db->bindParam('access', $access);
+        $this->db->bindParam('idAkses', $access);
         return $this->db->execute();
     }
 
