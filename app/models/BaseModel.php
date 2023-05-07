@@ -2,28 +2,12 @@
 
 class BaseModel
 {
-    private $table;
-    private $db;
+    protected $table;
+    protected $db;
 
-    public function __construct($table)
+    protected function __construct($table)
     {
         $this->db = new Database;
         $this->table = $table;
-    }
-
-    /**
-     * @return String table name
-     */
-    public function getTable()
-    {
-        return $this->table;
-    }
-
-    /**
-     * @return Database database object
-     */
-    public function getDb()
-    {
-        return $this->db;
     }
 }

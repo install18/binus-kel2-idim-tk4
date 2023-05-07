@@ -10,8 +10,8 @@ class HakAksesModel extends BaseModel
 
     public function getHakAksesByIdAkses($idAkses)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE idAkses=:idAkses`);
-        $this->getDb()->bindParam('idAkses', $idAkses);
-        return $this->getDb()->fetchAll();
+        $this->db->query("SELECT * FROM $this->table WHERE idAkses=:idAkses");
+        $this->db->bindParam('idAkses', $idAkses);
+        return $this->db->fetchAll();
     }
 }

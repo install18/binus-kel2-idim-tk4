@@ -11,6 +11,14 @@ class PenggunaController extends BaseController
 
     public function login()
     {
+        $data['title'] = 'Login';
+        $this->view('template/loginRegister_header', $data);
+        $this->view('Pengguna/Login');
+        $this->view('template/loginRegister_footer');
+    }
+
+    public function processLogin()
+    {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $result = $this->model('Pengguna')->getPenggunaByNamaPenggunaAndPassword($username, $password);

@@ -10,54 +10,54 @@ class PenggunaModel extends BaseModel
 
     public function getPenggunaByNamaPenggunaAndPassword($namaPengguna, $password)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE namaPengguna=:namaPengguna AND password=:password`);
-        $this->getDb()->bindParam('namaPengguna', $namaPengguna);
-        $this->getDb()->bindParam('password', $password);
-        return $this->getDb()->fetch();
+        $this->db->query("SELECT * FROM $this->table WHERE namaPengguna=:namaPengguna AND password=:password");
+        $this->db->bindParam('namaPengguna', $namaPengguna);
+        $this->db->bindParam('password', $password);
+        return $this->db->fetch();
     }
 
     public function getPenggunaByNamaPengguna($namaPengguna)
     {
-        $this->getDb()->query(`SELECT * FROM ${this->getTable()} WHERE namaPengguna=:namaPengguna`);
-        $this->getDb()->bindParam('namaPengguna', $namaPengguna);
-        return $this->getDb()->fetch();
+        $this->db->query("SELECT * FROM $this->table WHERE namaPengguna=:namaPengguna");
+        $this->db->bindParam('namaPengguna', $namaPengguna);
+        return $this->db->fetch();
     }
 
     public function insertPengguna($namaPengguna, $password, $namaDepan, $namaBelakang, $noHp, $alamat, $access)
     {
-        $query = `INSERT INTO ${this->getTable()} VALUES ('', :namaPengguna, :password, :namaDepan, :namaBelakang, :noHp, :alamat, :access`;
+        $query = "INSERT INTO $this->table VALUES ('', :namaPengguna, :password, :namaDepan, :namaBelakang, :noHp, :alamat, :access";
 
-        $this->getDb()->query($query);
-        $this->getDb()->bindParam('namaPengguna', $namaPengguna);
-        $this->getDb()->bindParam('password', $password);
-        $this->getDb()->bindParam('namaDepan', $namaDepan);
-        $this->getDb()->bindParam('namaBelakang', $namaBelakang);
-        $this->getDb()->bindParam('noHp', $noHp);
-        $this->getDb()->bindParam('alamat', $alamat);
-        $this->getDb()->bindParam('access', $access);
-        return $this->getDb()->execute();
+        $this->db->query($query);
+        $this->db->bindParam('namaPengguna', $namaPengguna);
+        $this->db->bindParam('password', $password);
+        $this->db->bindParam('namaDepan', $namaDepan);
+        $this->db->bindParam('namaBelakang', $namaBelakang);
+        $this->db->bindParam('noHp', $noHp);
+        $this->db->bindParam('alamat', $alamat);
+        $this->db->bindParam('access', $access);
+        return $this->db->execute();
     }
 
     public function updatePengguna($namaPengguna, $password, $namaDepan, $namaBelakang, $noHp, $alamat)
     {
-        $query = `UPDATE ${this->getTable()} SET password=:password, namaDepan=:namaDepan, namaBelakang=:namaBelakang, noHp=:noHp, alamat=:alamat WHERE namaPengguna=:namaPengguna`;
+        $query = "UPDATE $this->table SET password=:password, namaDepan=:namaDepan, namaBelakang=:namaBelakang, noHp=:noHp, alamat=:alamat WHERE namaPengguna=:namaPengguna";
 
-        $this->getDb()->query($query);
-        $this->getDb()->bindParam('namaPengguna', $namaPengguna);
-        $this->getDb()->bindParam('password', $password);
-        $this->getDb()->bindParam('namaDepan', $namaDepan);
-        $this->getDb()->bindParam('namaBelakang', $namaBelakang);
-        $this->getDb()->bindParam('noHp', $noHp);
-        $this->getDb()->bindParam('alamat', $alamat);
-        return $this->getDb()->execute();
+        $this->db->query($query);
+        $this->db->bindParam('namaPengguna', $namaPengguna);
+        $this->db->bindParam('password', $password);
+        $this->db->bindParam('namaDepan', $namaDepan);
+        $this->db->bindParam('namaBelakang', $namaBelakang);
+        $this->db->bindParam('noHp', $noHp);
+        $this->db->bindParam('alamat', $alamat);
+        return $this->db->execute();
     }
 
     public function deletePengguna($idPengguna)
     {
-        $query = `DELETE FROM ${this->getTable()} WHERE idPengguna=:idPengguna`;
+        $query = "DELETE FROM $this->table WHERE idPengguna=:idPengguna";
 
-        $this->getDb()->query($query);
-        $this->getDb()->bindParam('idPengguna', $idPengguna);
-        return $this->getDb()->execute();
+        $this->db->query($query);
+        $this->db->bindParam('idPengguna', $idPengguna);
+        return $this->db->execute();
     }
 }
